@@ -4,6 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
+import idat.edu.pe.daa2.spring.core.di.automatica.PagoI;
+import idat.edu.pe.daa2.spring.core.di.automatica.PagoInternet;
 import idat.edu.pe.daa2.spring.core.di.tradicional.Automovil;
 import idat.edu.pe.daa2.spring.core.di.tradicional.Tracktor;
 import idat.edu.pe.daa2.spring.core.di.tradicional.VehiculoI;
@@ -18,8 +20,12 @@ public class SpringCoreProjectAppApplication {
 
 	public static void main(String[] args) {
 		
-		//String nombre = "Christian Castillo";
+		ConfigurableApplicationContext ctx = SpringApplication.run(SpringCoreProjectAppApplication.class, args);
+		PagoI servicioPago = ctx.getBean(PagoInternet.class);
+		servicioPago.realizarPago();
 		
+		//String nombre = "Christian Castillo";
+		/*
 		ConfigurableApplicationContext cxt = SpringApplication.run(SpringCoreProjectAppApplication.class, args);
 		
 		ViajarVehiculo viaje =  new ViajarVehiculo();
@@ -35,7 +41,7 @@ public class SpringCoreProjectAppApplication {
 		
 		viaje.setVehiculo(cxt.getBean(Tracktor.class));
 		viaje.empezarAcelerar();
-		
+		*/
 		
 		//SaludoI saludo1 = (SaludoEspannol)cxt.getBean("saludoEspannol");
 		//System.out.println("saludo 1 en español : " + saludo1.saludar(nombre));		
